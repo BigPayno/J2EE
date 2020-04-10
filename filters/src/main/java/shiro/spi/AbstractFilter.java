@@ -5,9 +5,9 @@ import org.apache.shiro.web.servlet.ServletContextSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.Filter;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
-import java.util.logging.Filter;
 
 /**
  * @author payno
