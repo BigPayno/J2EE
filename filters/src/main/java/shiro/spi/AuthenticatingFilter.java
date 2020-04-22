@@ -24,6 +24,7 @@ public abstract class AuthenticatingFilter extends AuthenticationFilter{
     }
 
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
+        //根据请求创建Token
         AuthenticationToken token = this.createToken(request, response);
         if (token == null) {
             String msg = "createToken method implementation returned null. A valid non-null AuthenticationToken must be created in order to execute a login attempt.";
@@ -31,9 +32,12 @@ public abstract class AuthenticatingFilter extends AuthenticationFilter{
         } else {
             try {
                 Subject subject = this.getSubject(request, response);
+                //尝试登陆，并尝试从session中获得相关信息
                 subject.login(token);
+                //登陆成功时事件
                 return this.onLoginSuccess(token, subject, request, response);
             } catch (AuthenticationException var5) {
+                //登陆失败时事件
                 return this.onLoginFailure(token, var5, request, response);
             }
         }

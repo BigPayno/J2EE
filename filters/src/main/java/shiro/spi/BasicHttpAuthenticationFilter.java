@@ -94,6 +94,7 @@ public class BasicHttpAuthenticationFilter extends AuthenticatingFilter  {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         boolean loggedIn = false;
+        //尝试登陆
         if (this.isLoginAttempt(request, response)) {
             loggedIn = this.executeLogin(request, response);
         }

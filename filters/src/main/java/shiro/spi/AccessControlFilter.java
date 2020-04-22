@@ -46,7 +46,7 @@ public abstract class AccessControlFilter extends PathMatchingFilter{
     @Override
     public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         /**
-         *  只有不允许访问且拒绝才会不执行过滤器
+         *  返回成功才会执行
          */
         return this.isAccessAllowed(request, response, mappedValue) || this.onAccessDenied(request, response, mappedValue);
     }
